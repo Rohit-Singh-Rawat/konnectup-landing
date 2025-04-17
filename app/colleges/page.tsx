@@ -43,6 +43,7 @@ export default function CollegesPage() {
         <section className="relative h-screen flex items-center">   
           <div className="absolute inset-0 z-0">
             <Image 
+            loading='lazy'
               src="/images/college.jpg" 
               width={1920}
               height={1080}
