@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 
-import { BookOpen, GraduationCap, Users } from 'lucide-react';
+import { BookOpen, GraduationCap, type LucideIcon, Users } from 'lucide-react';
 import Image from 'next/image';
 
 const steps = [
@@ -23,7 +23,7 @@ const steps = [
   }
 ];
 
-const Step = ({ icon: Icon, title, description }: { icon: any; title: string; description: string }) => {
+const Step = ({ icon: Icon, title, description }: { icon: LucideIcon,title: string; description: string }) => {
   return (
     <div className="bg-white p-8  shadow-sm border border-border group">
       <div className="bg-black/5 w-12 h-12 flex items-center justify-center rounded-full mb-6 shadow-inner border border-black/10">
@@ -83,8 +83,8 @@ export default function CollegesPage() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-10">
-              {steps.map((step, index) => (
-                <Step key={index} {...step} />
+              {steps.map((step) => (
+                <Step key={step.title} {...step} />
               ))}
             </div>
           </div>
