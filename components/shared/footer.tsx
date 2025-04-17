@@ -1,12 +1,12 @@
 'use client';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-		<footer className='bg-white text-black border-t border-gray-200'>
+		<footer className='bg-white text-black border-t border-gray-800'>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
 				<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
 					{/* Logo and Description */}
@@ -23,7 +23,7 @@ const Footer = () => {
 								className='h-10 w-auto'
 							/>
 						</Link>
-						<p className='text-gray-600 text-sm mt-4'>
+						<p className='text-gray-900 text-sm mt-4'>
 							Empowering engineers to accelerate their careers through personalized mentorship and
 							guidance.
 						</p>
@@ -32,7 +32,7 @@ const Footer = () => {
 								href='https://twitter.com/konnectup'
 								target='_blank'
 								rel='noopener noreferrer'
-								className='text-gray-600 hover:text-primary transition-colors'
+								className='text-gray-900 hover:text-primary transition-colors'
 							>
 								<span className='sr-only'>Twitter</span>
 								<svg
@@ -48,7 +48,7 @@ const Footer = () => {
 								href='https://linkedin.com/company/konnectup'
 								target='_blank'
 								rel='noopener noreferrer'
-								className='text-gray-600 hover:text-primary transition-colors'
+								className='text-gray-900 hover:text-primary transition-colors'
 							>
 								<span className='sr-only'>LinkedIn</span>
 								<svg
@@ -70,7 +70,7 @@ const Footer = () => {
 							<li>
 								<Link
 									href='/#about-us'
-									className='text-gray-600 hover:text-primary transition-colors'
+									className='text-gray-900 hover:text-primary transition-colors'
 								>
 									About Us
 								</Link>
@@ -78,7 +78,7 @@ const Footer = () => {
 							<li>
 								<Link
 									href='/#services'
-									className='text-gray-600 hover:text-primary transition-colors'
+									className='text-gray-900 hover:text-primary transition-colors'
 								>
 									Services
 								</Link>
@@ -86,7 +86,7 @@ const Footer = () => {
 							<li>
 								<Link
 									href='/#mentor-companies'
-									className='text-gray-600 hover:text-primary transition-colors'
+									className='text-gray-900 hover:text-primary transition-colors'
 								>
 									Our Mentors
 								</Link>
@@ -94,7 +94,7 @@ const Footer = () => {
 							<li>
 								<Link
 									href='/#book'
-									className='text-gray-600 hover:text-primary transition-colors'
+									className='text-gray-900 hover:text-primary transition-colors'
 								>
 									Book a Call
 								</Link>
@@ -108,7 +108,7 @@ const Footer = () => {
 						<ul className='space-y-2'>
 							<li className='flex items-start'>
 								<svg
-									className='h-6 w-6 text-gray-600 mr-2 flex-shrink-0'
+									className='h-6 w-6 text-gray-900 mr-2 flex-shrink-0'
 									fill='none'
 									viewBox='0 0 24 24'
 									stroke='currentColor'
@@ -122,14 +122,14 @@ const Footer = () => {
 								</svg>
 								<a
 									href='mailto:info@konnectup.ai'
-									className='text-gray-600 hover:text-primary transition-colors'
+									className='text-gray-900 hover:text-primary transition-colors'
 								>
 									info@konnectup.ai, +91 6354035567,
 								</a>
 							</li>
 							<li className='flex items-start'>
 								<svg
-									className='h-6 w-6 text-gray-600 mr-2 flex-shrink-0'
+									className='h-6 w-6 text-gray-900 mr-2 flex-shrink-0'
 									fill='none'
 									viewBox='0 0 24 24'
 									stroke='currentColor'
@@ -147,15 +147,15 @@ const Footer = () => {
 										d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
 									/>
 								</svg>
-								<span className='text-gray-600'>Bangalore, India</span>
+								<span className='text-gray-900'>Bangalore, India</span>
 							</li>
 						</ul>
 					</div>
 				</div>
 
-				<div className='border-t border-gray-200 mt-12 pt-8'>
-					<p className='text-gray-600 text-sm text-center'>
-						© {currentYear} KonnectUp. All rights reserved.
+				<div className='border-t border-gray-800 mt-12 pt-8'>
+					<p className='text-gray-900 text-sm text-center'>
+						{currentYear} KonnectUp. All rights reserved.
 					</p>
 				</div>
 			</div>
