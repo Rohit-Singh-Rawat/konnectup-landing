@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import heroBg from '@/public/images/hero.jpg'
 
 const Home = () => {
 	return (
@@ -10,12 +11,13 @@ const Home = () => {
 			{/* Background image with subtle gradient overlay */}
 			<div className='absolute inset-0 z-0'>
 				<Image
-					src='/images/hero.jpg'
+					src={heroBg}
 					alt='Professional career coaching'
 					fill
 					priority
 					className='object-cover'
 					sizes='100vw'
+					placeholder='blur'
 				/>
 				<div className='absolute inset-0 bg-gradient-to-b from-black/40 to-black/70'></div>
 			</div>

@@ -3,6 +3,10 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import resumeService from '@/public/images/resumeService.png';
+
+import carrerService from '@/public/images/carrerService.png';
+import interviewService from '@/public/images/interviewService.png';
 
 const Services = () => {
 	return (
@@ -34,24 +38,21 @@ const Services = () => {
 							title: 'YOUR 1:1 : RESUME REVIEW',
 							description:
 								'Get expert feedback on your resume to stand out from the competition and land more interviews.',
-							image:
-								'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+							image: resumeService,
 							calLink: 'https://cal.com/konnectup/collegekit',
 						},
 						{
 							title: 'YOUR 1:1 : CAREER ROADMAP',
 							description:
 								'Develop a strategic plan for your career growth with actionable steps and milestones.',
-							image:
-								'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+							image: carrerService,
 							calLink: 'https://cal.com/konnectup/collegekit',
 						},
 						{
 							title: 'YOUR 1:1 : PRACTICE INTERVIEW',
 							description:
 								'Prepare for your next big interview with personalized mock sessions and detailed feedback.',
-							image:
-								'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+							image: interviewService,
 							calLink: 'https://cal.com/konnectup/collegekit',
 						},
 					].map((service, index) => (
@@ -74,8 +75,10 @@ const Services = () => {
 										src={service.image}
 										alt={service.title}
 										fill
+										loading='eager'
+										placeholder='blur'
 										className='object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out'
-										sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+										sizes='(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw'
 									/>
 
 									{/* Service content overlay */}
