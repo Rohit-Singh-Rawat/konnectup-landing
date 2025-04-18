@@ -17,7 +17,7 @@ const AboutUs = () => {
 				className='flex flex-col lg:flex-row gap-8 md:gap-12 items-start w-full'
 				duration={0.7}
 			>
-				<div className='w-full lg:w-1/2 flex flex-col gap-6 relative mb-8 lg:mb-0 mt-10'>
+				<div className='w-full lg:w-1/2 flex flex-col gap-6 relative mb-8 lg:mb-0 mt-5'>
 					<Image
 						src='/images/about.png'
 						alt='About Us'

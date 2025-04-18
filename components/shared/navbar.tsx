@@ -7,6 +7,7 @@ import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { memo, useEffect, useRef, useState } from 'react';
+import { useSession, signOut } from 'next-auth/react';
 
 const navLinks = [
 	{ href: '/', label: 'Home' },
@@ -22,6 +23,7 @@ const transparentNavbarPages = ['/', '/colleges'];
 const UserMenu = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
+	const { data: session } = useSession();
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -35,6 +37,12 @@ const UserMenu = () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	}, []);
+
+	const handleLogout = async (e: React.MouseEvent) => {
+		e.preventDefault();
+		setIsOpen(false);
+		await signOut({ callbackUrl: '/' });
+	};
 
 	return (
 		<div
@@ -51,28 +59,39 @@ const UserMenu = () => {
 
 			{isOpen && (
 				<div className='absolute right-0 mt-2 bg-black/90 border border-white/20 text-white w-40 sm:w-48 p-2 shadow-lg z-50'>
-					<Link
-						href='/profile'
-						className='block px-3 sm:px-4 py-2 text-sm sm:text-base cursor-pointer hover:bg-white/10 focus:bg-white/10'
-						onClick={() => setIsOpen(false)}
-					>
-						Sign In
-					</Link>
-					<Link
-						href='/signUp'
-						className='block px-3 sm:px-4 py-2 text-sm sm:text-base cursor-pointer hover:bg-white/10 focus:bg-white/10'
-						onClick={() => setIsOpen(false)}
-					>
-						Create Account
-					</Link>
-					<div className='h-[1px] bg-white/10 my-1'></div>
-					<Link
-						href='/logout'
-						className='block px-3 sm:px-4 py-2 text-sm sm:text-base cursor-pointer hover:bg-white/10 focus:bg-white/10'
-						onClick={() => setIsOpen(false)}
-					>
-						Logout
-					</Link>
+					{session ? (
+						<>
+							<div className='px-3 sm:px-4 py-2 text-sm sm:text-base border-b border-white/10 mb-1'>
+								<div className='font-medium truncate'>
+									{session.user?.first_name} {session.user?.last_name}
+								</div>
+								<div className='text-xs text-white/70 truncate'>{session.user?.username}</div>
+							</div>
+							<button
+								className='block w-full text-left px-3 sm:px-4 py-2 text-sm sm:text-base cursor-pointer hover:bg-white/10 focus:bg-white/10'
+								onClick={handleLogout}
+							>
+								Logout
+							</button>
+						</>
+					) : (
+						<>
+							<Link
+								href='/login'
+								className='block px-3 sm:px-4 py-2 text-sm sm:text-base cursor-pointer hover:bg-white/10 focus:bg-white/10'
+								onClick={() => setIsOpen(false)}
+							>
+								Sign In
+							</Link>
+							<Link
+								href='/signUp'
+								className='block px-3 sm:px-4 py-2 text-sm sm:text-base cursor-pointer hover:bg-white/10 focus:bg-white/10'
+								onClick={() => setIsOpen(false)}
+							>
+								Create Account
+							</Link>
+						</>
+					)}
 				</div>
 			)}
 		</div>
@@ -84,7 +103,7 @@ const Navbar = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const pathname = usePathname();
-	
+
 	const hasTransparentNavbar = transparentNavbarPages.includes(pathname);
 
 	useEffect(() => {
@@ -110,9 +129,16 @@ const Navbar = () => {
 	return (
 		<motion.nav
 			className='z-50 text-background py-2 sm:py-3 md:py-4 fixed top-0 w-full backdrop-blur-sm'
-			initial={{ backgroundColor: hasTransparentNavbar ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 1)', y: -100 }}
+			initial={{
+				backgroundColor: hasTransparentNavbar ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 1)',
+				y: -100,
+			}}
 			animate={{
-				backgroundColor: hasTransparentNavbar ? (scrolled ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0.5)') : 'rgba(0, 0, 0, 1)',
+				backgroundColor: hasTransparentNavbar
+					? scrolled
+						? 'rgba(0, 0, 0, 1)'
+						: 'rgba(0, 0, 0, 0.5)'
+					: 'rgba(0, 0, 0, 1)',
 				y: 0,
 			}}
 			transition={{ duration: 0.5 }}
@@ -232,9 +258,15 @@ const Navbar = () => {
 			{isMenuOpen && (
 				<motion.div
 					className='md:hidden fixed top-[calc(2.5rem+1.5rem)] sm:top-[calc(3rem+1.5rem)] left-0 right-0 z-50 shadow-md py-4 px-4 max-h-[calc(100vh-5rem)] overflow-y-auto backdrop-blur-sm'
-					initial={{ backgroundColor: hasTransparentNavbar ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 1)' }}
+					initial={{
+						backgroundColor: hasTransparentNavbar ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 1)',
+					}}
 					animate={{
-						backgroundColor: hasTransparentNavbar ? (scrolled ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0.5)') : 'rgba(0, 0, 0, 1)',
+						backgroundColor: hasTransparentNavbar
+							? scrolled
+								? 'rgba(0, 0, 0, 1)'
+								: 'rgba(0, 0, 0, 0.5)'
+							: 'rgba(0, 0, 0, 1)',
 					}}
 					transition={{ duration: 0.5 }}
 				>

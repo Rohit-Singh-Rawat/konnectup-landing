@@ -1,39 +1,45 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { ChangeEvent, useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
+import { Control} from 'react-hook-form';
 
 interface InputFieldProps {
 	id: string;
 	name: string;
 	type: string;
 	label: string;
-	value: string;
-	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+	control: Control<any>;
+	placeholder?: string;
 }
 
-export function InputField({ id, name, type, label, value, onChange }: InputFieldProps) {
-	const [isFocused, setIsFocused] = useState(false);
-
+export function InputField({ id, name, type, label, control, placeholder }: InputFieldProps) {
 	return (
-		<div className='relative pt-5'>
-			<label
-				htmlFor={id}
-				className={`absolute transition-all duration-200 ${
-					isFocused || value ? 'text-xs top-0 text-black' : 'text-base top-5 text-black/70'
-				}`}
-			>
-				{label}
-			</label>
-			<input
-				id={id}
-				name={name}
-				type={type}
-				value={value}
-				onChange={onChange}
-				onFocus={() => setIsFocused(true)}
-				onBlur={() => setIsFocused(false)}
-				className='w-full pb-1 pt-1 border-0 border-b border-gray-300 focus:ring-0 focus:border-black outline-none bg-transparent'
-			/>
-		</div>
+		<FormField
+			control={control}
+			name={name}
+			render={({ field }) => (
+				<FormItem className='relative'>
+					<FormControl>
+						<Input
+							id={id}
+							type={type}
+							placeholder={placeholder || `Enter your ${label.toLowerCase()}`}
+							{...field}
+							className='peer w-full pl-0 pb-1 pt-1 border-0 border-b border-gray-300 focus:ring-0 focus:border-black outline-none bg-transparent rounded-none shadow-none placeholder:text-transparent'
+						/>
+					</FormControl>
+					<Label
+						htmlFor={id}
+						className='absolute text-black/70 left-0 text-base top-5 transition-all duration-200 peer-focus:text-xs peer-focus:top-0 peer-focus:text-black peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-black'
+					>
+						{label}
+					</Label>
+					<FormMessage />
+				</FormItem>
+			)}
+		/>
 	);
 }
