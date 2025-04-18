@@ -6,13 +6,12 @@ import Cta from '@/components/sections/Cta';
 
 const Main = () => {
 	return (
-		<main className="">
+		<main>
 			<Home />
 			<Services />
 			<AboutUs />
 			<MentorCompanies />
-			<Cta />	
-			
+			<Cta />
 		</main>
 	);
 };

@@ -1,19 +1,22 @@
 'use client';
 
 import Logo from '@/components/icons/Logo';
-import Link from 'next/link';
-import { memo, useEffect, useState, useRef } from 'react';
-import { motion, useScroll } from 'framer-motion';
-import { usePathname } from 'next/navigation';
 import UserIcon from '@/components/icons/user';
 import { Button } from '@/components/ui/button';
+import { motion, useScroll } from 'framer-motion';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { memo, useEffect, useRef, useState } from 'react';
 
 const navLinks = [
 	{ href: '/', label: 'Home' },
 	{ href: '/colleges', label: 'For Colleges' },
-	{ href: 'https://www.konnectup.ai/job', label: 'Find Jobs' },
+	{ href: 'https://www.konnectup.ai/job', label: 'Find Jobs', target: '_blank' },
 	{ href: '/#about-us', label: 'About Us' },
 ];
+
+// Pages with transparent navbar
+const transparentNavbarPages = ['/', '/colleges'];
 
 // User menu component
 const UserMenu = () => {
@@ -47,20 +50,20 @@ const UserMenu = () => {
 			</Button>
 
 			{isOpen && (
-				<div className='absolute right-0 mt-2 bg-black border border-white/20 text-white w-40 sm:w-48 p-2 shadow-lg z-50'>
+				<div className='absolute right-0 mt-2 bg-black/90 border border-white/20 text-white w-40 sm:w-48 p-2 shadow-lg z-50'>
 					<Link
 						href='/profile'
 						className='block px-3 sm:px-4 py-2 text-sm sm:text-base cursor-pointer hover:bg-white/10 focus:bg-white/10'
 						onClick={() => setIsOpen(false)}
 					>
-						My Profile
+						Sign In
 					</Link>
 					<Link
-						href='/settings'
+						href='/signUp'
 						className='block px-3 sm:px-4 py-2 text-sm sm:text-base cursor-pointer hover:bg-white/10 focus:bg-white/10'
 						onClick={() => setIsOpen(false)}
 					>
-						Settings
+						Create Account
 					</Link>
 					<div className='h-[1px] bg-white/10 my-1'></div>
 					<Link
@@ -81,6 +84,8 @@ const Navbar = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const pathname = usePathname();
+	
+	const hasTransparentNavbar = transparentNavbarPages.includes(pathname);
 
 	useEffect(() => {
 		const unsubscribe = scrollY.onChange((latest) => {
@@ -105,9 +110,9 @@ const Navbar = () => {
 	return (
 		<motion.nav
 			className='z-50 text-background py-2 sm:py-3 md:py-4 fixed top-0 w-full backdrop-blur-sm'
-			initial={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', y: -100 }}
+			initial={{ backgroundColor: hasTransparentNavbar ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 1)', y: -100 }}
 			animate={{
-				backgroundColor: scrolled ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0.5)',
+				backgroundColor: hasTransparentNavbar ? (scrolled ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0.5)') : 'rgba(0, 0, 0, 1)',
 				y: 0,
 			}}
 			transition={{ duration: 0.5 }}
@@ -123,10 +128,11 @@ const Navbar = () => {
 
 					{/* Desktop Navigation */}
 					<div className='hidden md:flex items-center justify-center space-x-4 lg:space-x-8 xl:space-x-10 flex-1'>
-						{navLinks.map(({ href, label }) => (
+						{navLinks.map(({ href, label, target }) => (
 							<Link
 								key={href}
 								href={href}
+								target={target}
 								className='text-white text-sm lg:text-base relative group'
 							>
 								{label}
@@ -226,18 +232,18 @@ const Navbar = () => {
 			{isMenuOpen && (
 				<motion.div
 					className='md:hidden fixed top-[calc(2.5rem+1.5rem)] sm:top-[calc(3rem+1.5rem)] left-0 right-0 z-50 shadow-md py-4 px-4 max-h-[calc(100vh-5rem)] overflow-y-auto backdrop-blur-sm'
-					initial={{ backgroundColor: 'rgba(0, 0, 0, 0.5)',  }}
+					initial={{ backgroundColor: hasTransparentNavbar ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 1)' }}
 					animate={{
-						backgroundColor: scrolled ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0.5)',
-						
+						backgroundColor: hasTransparentNavbar ? (scrolled ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0.5)') : 'rgba(0, 0, 0, 1)',
 					}}
 					transition={{ duration: 0.5 }}
 				>
 					<div className='flex flex-col space-y-3 sm:space-y-4'>
-						{navLinks.map(({ href, label }) => (
+						{navLinks.map(({ href, label, target }) => (
 							<Link
 								key={href}
 								href={href}
+								target={target}
 								className='text-white/80 hover:text-white py-1.5 sm:py-2 text-sm sm:text-base'
 								onClick={() => setIsMenuOpen(false)}
 							>

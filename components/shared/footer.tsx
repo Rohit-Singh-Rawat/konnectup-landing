@@ -7,9 +7,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-		<footer className='bg-white text-black border-t border-gray-800'>
-			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-				<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+		<footer className='bg-white text-black border-t border-gray-300'>
+			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 '>
+				<div className='grid grid-cols-1 md:grid-cols-3 gap-8 '>
 					{/* Logo and Description */}
 					<div className='space-y-4'>
 						<Link
@@ -24,7 +24,7 @@ const Footer = () => {
 								className='h-10 w-auto'
 							/>
 						</Link>
-						<p className='text-gray-900 text-sm mt-4'>
+						<p className='text-gray-700 text-sm mt-4'>
 							Empowering engineers to accelerate their careers through personalized mentorship and
 							guidance.
 						</p>
@@ -33,11 +33,11 @@ const Footer = () => {
 					{/* Quick Links */}
 					<div>
 						<h3 className='text-lg font-semibold mb-4'>Quick Links</h3>
-						<ul className='space-y-2'>
+						<ul className='space-y-3'>
 							<li>
 								<Link
 									href='/#about-us'
-									className='text-gray-900 hover:text-primary transition-colors'
+									className='text-gray-700 hover:text-primary transition-colors'
 								>
 									About Us
 								</Link>
@@ -45,7 +45,7 @@ const Footer = () => {
 							<li>
 								<Link
 									href='/#services'
-									className='text-gray-900 hover:text-primary transition-colors'
+									className='text-gray-700 hover:text-primary transition-colors'
 								>
 									Services
 								</Link>
@@ -53,7 +53,7 @@ const Footer = () => {
 							<li>
 								<Link
 									href='/#mentor-companies'
-									className='text-gray-900 hover:text-primary transition-colors'
+									className='text-gray-700 hover:text-primary transition-colors'
 								>
 									Our Mentors
 								</Link>
@@ -61,7 +61,7 @@ const Footer = () => {
 							<li>
 								<Link
 									href='/#book'
-									className='text-gray-900 hover:text-primary transition-colors'
+									className='text-gray-700 hover:text-primary transition-colors'
 								>
 									Book a Call
 								</Link>
@@ -72,26 +72,27 @@ const Footer = () => {
 					{/* Contact */}
 					<div>
 						<h3 className='text-lg font-semibold mb-4'>Contact Us</h3>
-						<ul className='space-y-2'>
-							<li className='flex items-start gap-2'>
-							<Mail className='size-5'/>
+						<ul className='space-y-3'>
+							<li className='flex items-center gap-3'>
+								<Mail className='size-5 text-gray-600'/>
 								<a
 									href='mailto:info@konnectup.ai'
-									className='text-gray-900 hover:text-primary transition-colors'
+									className='text-gray-700 hover:text-primary transition-colors'
 								>
-									info@konnectup.ai,
+									info@konnectup.ai
 								</a>
 							</li>
-							<li className='flex items-start gap-2'>
-								<PhoneCall className='size-5'/>
-								+91 6354035567</li>
+							<li className='flex items-center gap-3'>
+								<PhoneCall className='size-5 text-gray-600'/>
+								<span className='text-gray-700'>+91 6354035567</span>
+							</li>
 						</ul>
 					</div>
 				</div>
 
-				<div className='border-t border-gray-800 mt-12 pt-8'>
-					<p className='text-gray-900 text-sm text-center'>
-						{currentYear} KonnectUp. All rights reserved.
+				<div className='border-t border-gray-200 mt-12 pt-8'>
+					<p className='text-gray-600 text-sm text-center'>
+						© {currentYear} KonnectUp. All rights reserved.
 					</p>
 				</div>
 			</div>
