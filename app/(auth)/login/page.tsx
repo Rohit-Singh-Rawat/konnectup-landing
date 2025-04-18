@@ -5,7 +5,7 @@ import { LoginForm } from '@/components/auth/LoginForm';
 
 export default function Login() {
 	return (
-		<AuthLayout title='Sing in'>
+		<AuthLayout title='Sign in'>
 			<LoginForm />
 		</AuthLayout>
 	);
