@@ -12,9 +12,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-	title: 'KonnectUp - Transform Your Institution&apos;s Career Development Program',
-	description: 'Transform your institution\'s career development program with KonnectUp\'s industry-leading guidance and support.',
-	icons: [{ rel: 'icon', url: '/logo2.svg' }],
+    title: 'KonnectUp - Transform Your Institution&apos;s Career Development Program',
+    description: 'Transform your institution\'s career development program with KonnectUp\'s industry-leading guidance and support.',
+    icons: [{ rel: 'icon', url: '/logo2.svg' }]
 };
 
 export default function RootLayout({
