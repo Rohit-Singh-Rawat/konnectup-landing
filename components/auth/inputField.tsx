@@ -13,9 +13,10 @@ interface InputFieldProps {
 	label: string;
 	control: Control<any>;
 	placeholder?: string;
+	disabled?: boolean;
 }
 
-export function InputField({ id, name, type, label, control, placeholder }: InputFieldProps) {
+export function InputField({ id, name, type, label, control, placeholder, disabled }: InputFieldProps) {
 	return (
 		<FormField
 			control={control}
@@ -29,6 +30,7 @@ export function InputField({ id, name, type, label, control, placeholder }: Inpu
 							placeholder={placeholder || `Enter your ${label.toLowerCase()}`}
 							{...field}
 							className='peer w-full pl-0 pb-1 pt-1 border-0 border-b border-gray-300 focus:ring-0 focus:border-black outline-none bg-transparent rounded-none shadow-none placeholder:text-transparent'
+							disabled={disabled}
 						/>
 					</FormControl>
 					<Label

@@ -25,6 +25,7 @@ export function LoginForm() {
 		},
 	});
 	const login = useLogin();
+	const isLoading = login.isPending;
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		login.mutate({
@@ -47,6 +48,7 @@ export function LoginForm() {
 						label='Email address'
 						control={form.control}
 						placeholder='Enter your email'
+						disabled={isLoading}
 					/>
 
 					<InputField
@@ -56,14 +58,16 @@ export function LoginForm() {
 						label='Password'
 						control={form.control}
 						placeholder='Enter your password'
+						disabled={isLoading}
 					/>
 				</div>
 
 				<Button
 					type='submit'
 					className='w-full py-3 sm:py-4 bg-black hover:bg-black/80 text-white font-medium mt-4 sm:mt-5'
+					disabled={isLoading}
 				>
-					Sign In
+					{isLoading ? 'Signing In...' : 'Sign In'}
 				</Button>
 
 				<div className='text-sm text-center mt-4'>

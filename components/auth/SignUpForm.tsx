@@ -55,6 +55,7 @@ export function SignUpForm() {
 						type='text'
 						label='Full Name'
 						control={form.control}
+						disabled={status === 'pending'}
 						placeholder='Enter your full name'
 					/>
 
@@ -65,6 +66,7 @@ export function SignUpForm() {
 						label='Email address'
 						control={form.control}
 						placeholder='Enter your email'
+						disabled={status === 'pending'}
 					/>
 
 					<InputField
@@ -74,6 +76,7 @@ export function SignUpForm() {
 						label='Password'
 						control={form.control}
 						placeholder='Enter your password'
+						disabled={status === 'pending'}
 					/>
 				</div>
 
