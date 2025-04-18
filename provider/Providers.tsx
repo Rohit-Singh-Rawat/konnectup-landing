@@ -1,12 +1,12 @@
-"use client";
-import { type ReactNode } from "react";
-import QueryProvider from "./QueryProvider";
-import { SessionProvider } from "next-auth/react";
+'use client';
+import { JSX, type ReactNode } from 'react';
+import QueryProvider from './QueryProvider';
+import { SessionProvider } from 'next-auth/react';
 /**
  * Props for the Providers component
  */
 type ProvidersProps = {
-    children: ReactNode;
+	children: ReactNode;
 };
 
 /**
@@ -14,9 +14,9 @@ type ProvidersProps = {
  * Currently only includes QueryProvider
  */
 const Providers = ({ children }: ProvidersProps): JSX.Element => (
-    <SessionProvider>
-        <QueryProvider>{children}</QueryProvider>
-    </SessionProvider>
+	<SessionProvider>
+		<QueryProvider>{children}</QueryProvider>
+	</SessionProvider>
 );
 
 export default Providers;

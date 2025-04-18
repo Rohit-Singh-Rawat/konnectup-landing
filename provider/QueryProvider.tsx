@@ -1,5 +1,5 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { type ReactNode } from "react";
+import { JSX, type ReactNode } from "react";
 
 /**
  * Props for the QueryProvider component

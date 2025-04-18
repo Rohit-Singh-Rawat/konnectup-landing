@@ -11,6 +11,7 @@ export const authConfig: NextAuthConfig = {
 		/**
 		 * Handles user sign-in
 		 */
+		
 
 		/**
 		 * Adds custom user data to the JWT
